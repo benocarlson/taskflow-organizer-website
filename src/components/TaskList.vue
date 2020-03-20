@@ -122,4 +122,9 @@ export default {
   border-color: #a44;
 }
 
+@media only screen and (max-width: 400px) {
+  .task {
+    width: 40%;
+  }
+}
 </style>

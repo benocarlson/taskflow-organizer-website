@@ -20,6 +20,7 @@
 
 <style>
 #app {
+  margin: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,18 +42,19 @@
   width: 200px;
   height: 200px;
   object-fit: scale-down;
-  margin-left: 50px;
+  margin-left: 5%;
 }
 
 #nav {
   padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #nav a {
   font-weight: bold;
   color: #222;
-  margin-left: 10px;
-  margin-right: 50px;
+  margin: 5% 10% 5% 20%;
 }
 
 #nav a.router-link-exact-active {

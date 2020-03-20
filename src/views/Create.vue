@@ -195,6 +195,7 @@ select {
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+  width: 100%;
 }
 
 .added-task {
@@ -229,5 +230,29 @@ select {
   font-size: 2em;
   font-weight: bold;
   border-width: 1px;
+}
+
+@media only screen and (max-width: 400px) {
+  #name-form {
+    font-size: 17px;
+    justify-content: center;
+  }
+  #name-form label {
+    margin-right: 0;
+    width: 30%;
+  }
+  #name-input {
+    font-size: 17px;
+  }
+
+  .added-task {
+    width: 35%;
+  }
+}
+
+@media only screen and (min-width: 961px) {
+  .new-task-entry {
+    width: 45%;
+  }
 }
 </style>

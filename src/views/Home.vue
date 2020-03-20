@@ -88,4 +88,10 @@ export default {
   margin: 30px auto;
 }
 
+@media only screen and (max-width: 400px) {
+  .taskflow-thumb {
+    width: 90%;
+  }
+}
+
 </style>
