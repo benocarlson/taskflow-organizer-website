@@ -25,6 +25,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #8c8;
 }
 
 #header {
@@ -33,7 +34,7 @@
   align-items: center;
   padding: 20px;
   border-bottom: 3px solid #111;
-  background: #CCC;
+  background: #cc8;
 }
 
 #logo img {
@@ -55,7 +56,7 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #292;
 }
 
 #footer {
@@ -63,7 +64,7 @@
   justify-content: center;
   padding: 20px;
   border-top: 3px solid #111;
-  background: #CCC;
+  background: #cc8;
   margin-top: 40px;
 }
 
@@ -73,13 +74,13 @@
 }
 
 #footer a:link, #footer a:visited {
-  background: #AAA;
+  background: #aa6;
   color: #000;
   text-decoration: none;
 }
 
 #footer a:hover, #footer a:visited:hover {
-  background: #888;
+  background: #995;
   color: #000;
 }
 </style>
