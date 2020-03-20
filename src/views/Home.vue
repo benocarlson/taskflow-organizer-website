@@ -21,7 +21,7 @@ export default {
   methods: {
     taskCount(taskflow) {
       return taskflow.tasks.reduce((total, next) => {
-        if (next.complete) total++;
+        if (!next.complete) total++;
         return total;
       }, 0)
     }

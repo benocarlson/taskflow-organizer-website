@@ -1,8 +1,18 @@
 <template>
   <div class="wrapper">
-    <TaskList class="ready" :tasks="ready" @complete-task="completeTask"/>
-    <TaskList class="locked" :tasks="locked"/>
-    <TaskList class="completed" :tasks="completed"/>
+    <h1>{{taskflow.name}}</h1>
+    <div class="ready" v-if='ready.length > 0'>
+      <h2>Tasks ready to be completed</h2>
+      <TaskList :tasks="ready" @complete-task="completeTask"/>
+    </div>
+    <div class="locked" v-if='locked.length > 0'>
+      <h2>Locked tasks</h2>
+      <TaskList :tasks="locked"/>
+    </div>
+    <div class="completed" v-if='completed.length > 0'>
+      <h2>Completed tasks</h2>
+      <TaskList :tasks="completed"/>
+    </div>
   </div>
 </template>
 

@@ -2,9 +2,13 @@
   <div class="wrapper">
     <div class="tasks">
       <div :class="'task ' + getTaskType(task)" v-for="task in tasks" :key="task.id">
-        <h2>{{task.name}}</h2>
+        <h3>{{task.name}}</h3>
+        <div class="todos" v-if='isLocked(task)'>
+          <h4>Complete first:</h4>
+          <p v-for='parent in getIncompleteParents(task)' :key='parent.id'>{{parent.name}}</p>
+        </div>
         <div class="task-controls">
-          <button class="complete" :disabled='isNotReady(task)' @click.prevent="$emit('complete-task', task)">Mark as Complete</button>
+          <button class="complete" v-if='isReady(task)' @click.prevent="$emit('complete-task', task)">Mark as Complete</button>
           <button class="edit">Edit</button>
           <button class="delete">Delete</button>
         </div>
@@ -20,6 +24,9 @@ export default {
     tasks: Array
   },
   methods: {
+    getIncompleteParents(task) {
+      return task.parents.filter(parent => !parent.complete)
+    },
     getTaskType(task) {
       if (task.complete) return "completed";
       else {
@@ -29,8 +36,11 @@ export default {
         return "ready";
       }
     },
-    isNotReady(task) {
-      return (this.getTaskType(task) !== "ready");
+    isReady(task) {
+      return (this.getTaskType(task) === "ready");
+    },
+    isLocked(task) {
+      return (this.getTaskType(task) === "locked");
     }
   }
 }
@@ -44,24 +54,30 @@ export default {
 }
 
 .tasks {
-  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .task {
   width: 27%;
+  border: 2px solid #000;
+  margin-top: 20px;
 }
 
-.task h1 {
-  font-size: 15px;
+.todos h4 {
+  margin: 0;
+}
+
+.todos p {
+  margin: 0;
 }
 
 .task-controls {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -69,8 +85,11 @@ export default {
   margin: 5px;
   padding: 5px;
   font-size: 10px;
+  width: 45%;
 }
 
 .task-controls .complete {
-  width: 90%;
+  width: 100%;
 }
+
+</style>
