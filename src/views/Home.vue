@@ -1,9 +1,14 @@
 <template>
   <div class="home">
-    <router-link class="taskflow-link" v-for="taskflow in taskflows" :to="'/taskflow/' + taskflow.id" :key="taskflow.id">
-      <h2>{{taskflow.name}}</h2>
-      <p>Uncompleted: {{taskCount(taskflow)}}</p>
-    </router-link>
+    <div :class="'taskflow-thumb ' + completionStatus(taskflow)" v-for="taskflow in taskflows" :key="taskflow.id">
+      <router-link class="taskflow-link" :to="'/taskflow/' + taskflow.id">
+        <h2>{{taskflow.name}}</h2>
+        <p v-if='taskCount(taskflow) > 0'>Uncompleted: {{taskCount(taskflow)}}</p>
+        <p v-else>Complete!</p>
+        <button class="delete-taskflow" @click.prevent="deleteFlow(taskflow)">Remove</button>
+      </router-link>
+    </div>
+    <h1 class='empty-message' v-if='taskflows.length === 0'>You have no taskflows. <br> Click <em>'Create a taskflow'</em> to get started!</h1>
   </div>
 </template>
 
@@ -24,6 +29,13 @@ export default {
         if (!next.complete) total++;
         return total;
       }, 0)
+    },
+    completionStatus(taskflow) {
+      if (this.taskCount(taskflow) > 0) return "incomplete";
+      else return "complete";
+    },
+    deleteFlow(taskflow) {
+      this.taskflows.splice(this.taskflows.indexOf(taskflow), 1);
     }
   }
 }
@@ -37,11 +49,42 @@ export default {
   justify-content: flex-start;
 }
 
-.taskflow-link {
+.taskflow-thumb {
   padding: 20px;
   border: 2px solid #000;
-  border-radius: 4px;
+  border-radius: 10px;
   margin: 20px;
+  background: #9d6;
+}
+
+.taskflow-thumb a {
+  color: #000;
+  text-decoration: none;
+}
+
+.taskflow-thumb button {
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 4px;
+  background: #a44;
+  border-color: #c66 #822 #c66 #822;
+}
+
+.taskflow-thumb:hover {
+  background: #7b4;
+}
+
+.complete {
+  background: #0a0;
+}
+
+.complete:hover {
+  background: #070;
+}
+
+.empty-message {
+  width: 50%;
+  margin: 30px auto;
 }
 
 </style>
