@@ -9,8 +9,8 @@
         </div>
         <div class="task-controls">
           <button class="complete" v-if='isReady(task)' @click.prevent="$emit('complete-task', task)">Mark as Complete</button>
-          <button class="edit">Edit</button>
-          <button class="delete">Delete</button>
+          <button class="incomplete" v-if='isComplete(task)' @click.prevent="$emit('incomplete-task', task)">Mark as Incomplete</button>
+          <button class="delete" @click.prevent="$emit('delete-task', task)">Delete</button>
         </div>
       </div>
     </div>
@@ -41,6 +41,9 @@ export default {
     },
     isLocked(task) {
       return (this.getTaskType(task) === "locked");
+    },
+    isComplete(task) {
+      return (this.getTaskType(task) === 'completed');
     }
   }
 }
@@ -85,10 +88,6 @@ export default {
   margin: 5px;
   padding: 5px;
   font-size: 10px;
-  width: 45%;
-}
-
-.task-controls .complete {
   width: 100%;
 }
 
