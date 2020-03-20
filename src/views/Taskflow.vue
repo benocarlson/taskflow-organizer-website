@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <TaskList class="ready" :tasks="ready"/>
+    <TaskList class="ready" :tasks="ready" @mark-complete="completeTask"/>
     <TaskList class="locked" :tasks="locked"/>
     <TaskList class="completed" :tasks="completed"/>
   </div>
@@ -19,10 +19,10 @@ export default {
   },
   computed: {
     completed() {
-      return taskflow.tasks.filter(task => {return task.complete});
+      return this.taskflow.tasks.filter(task => {return task.complete});
     },
     ready() {
-      return taskflow.tasks.filter(task => {
+      return this.taskflow.tasks.filter(task => {
         for (let parent of task.parents) {
           if (!parent.complete) return false;
         }
@@ -30,12 +30,17 @@ export default {
       });
     },
     locked() {
-      return taskflow.tasks.filter(task => {
+      return this.taskflow.tasks.filter(task => {
         for (let parent of task.parents) {
           if (!parent.complete) return true;
         }
         return false;
       })
+    }
+  },
+  methods: {
+    completeTask(task) {
+      task.complete = true;
     }
   }
 }

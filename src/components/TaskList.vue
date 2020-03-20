@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <div class="tasks">
-      <div class="task" v-for="task in tasks" :key="task.id">
+      <div :class="'task ' + getTaskType(task)" v-for="task in tasks" :key="task.id">
         <h1>{{task.name}}</h1>
         <div class="task-controls">
-          <button class="complete">Mark as Complete</button>
+          <button class="complete" :disabled='isNotReady(task)' @click.prevent="$emit('complete-task', task)">Mark as Complete</button>
           <button class="edit">Edit</button>
           <button class="delete">Delete</button>
         </div>
@@ -18,6 +18,20 @@ export default {
   name: 'TaskList',
   props: {
     tasks: Array
+  },
+  methods: {
+    getTaskType(task) {
+      if (task.complete) return "completed";
+      else {
+        for (let parent of task.parents) {
+          if (!parent.complete) return "locked";
+        }
+        return "ready";
+      }
+    },
+    isNotReady(task) {
+      return (getTaskType(task) !== "ready");
+    }
   }
 }
 </script>
