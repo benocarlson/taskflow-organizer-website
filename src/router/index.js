@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Taskflow from '../views/Taskflow.vue'
+import Create from '../views/Create.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/taskflow/:id',
     name: 'Taskflow',
     component: Taskflow
+  },
+  {
+    path: '/create',
+    name: 'Create',
+    component: Create
   }
 ]
 
