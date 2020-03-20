@@ -5,21 +5,30 @@
       <label>Name of New Taskflow:</label>
       <input type="text" id="name-input" v-model="taskflowName">
     </form>
-    <form id="task-form">
-      <label>Name of new task:</label>
-      <input type='text' id="task-name-input" v-model="newTaskName">
-      <h4 v-if="newTaskParents.length > 0">Dependencies:</h4>
-      <div class="new-dependency"  v-for='parent in newTaskParents' :key="parent.id">
-        <p>{{parent.name}}</p>
-        <button class='remove-dependency' @click.prevent="removeParent(parent)">Remove</button>
-      </div>
-      <label>Add as dependency:</label>
-      <select id="select-dependency" v-model="selectedParent">
-        <option v-for="task in eligibleParents" :value="task" :key='task.id'>{{task.name}}</option>
-      </select>
-      <button id="add-dependency" :disabled="!parentEligible" @click.prevent="addParent">Add</button>
-    </form>
-    <button id="add-new-task" :disabled="!taskPublishable" @click.prevent="addTask">Add Task</button>
+    <div class="new-task-entry">
+      <h3>Add a Task</h3>
+      <form id="task-form">
+        <div class='form-item'>
+          <label>Name of new task:</label>
+          <input type='text' id="task-name-input" v-model="newTaskName">
+        </div>
+        <h4 v-if="newTaskParents.length > 0">Dependencies:</h4>
+        <div class='new-dependencies'>
+          <div class="new-dependency"  v-for='parent in newTaskParents' :key="parent.id">
+            <p class="parent-name">{{parent.name}}</p>
+            <button class='remove-dependency' @click.prevent="removeParent(parent)">Remove</button>
+          </div>
+        </div>
+        <div class='form-item'>
+          <label>Add as dependency:</label>
+          <select id="select-dependency" v-model="selectedParent">
+            <option v-for="task in eligibleParents" :value="task" :key='task.id'>{{task.name}}</option>
+          </select>
+          <button id="add-dependency" :disabled="!parentEligible" @click.prevent="addParent">Add</button>
+        </div>
+      </form>
+      <button id="add-new-task" :disabled="!taskPublishable" @click.prevent="addTask">Add Task</button>
+    </div>
     <div class="new-task-list">
       <div class="added-task" v-for="task in tasks" :key="task.id">
         <h4>{{task.name}}</h4>
@@ -91,6 +100,7 @@ export default {
       this.selectedParent = {};
       this.taskflowName = '';
       this.tasks = [];
+      this.$router.push('/');
     }
   }
 }
@@ -98,4 +108,126 @@ export default {
 
 <style scoped>
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#name-form {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+#name-input {
+  height: 100%;
+  font-size: 1em;
+  background: #9d9;
+  border-color: #ada;
+}
+
+.new-task-entry {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000;
+  padding: 5px;
+  width: 75%;
+  background: #aa7;
+}
+
+.new-task-entry input, .new-task-entry select {
+  background: #cc9;
+  border-color: #bb8;
+}
+
+.new-task-entry button {
+  background: #ac7;
+  border-color: #ac7;
+}
+
+.new-dependencies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.new-dependency {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #bb8;
+  border-radius: 10px;
+  height: 30px;
+  margin: 10px;
+}
+
+.new-dependency button {
+  background: #ca7;
+  border-color: #ca7;
+}
+
+.new-dependency p {
+  margin-right: 5px;
+  padding: 0;
+}
+
+.form-item {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+select {
+  margin-right: 10px;
+  width: 100px;
+}
+
+.new-task-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.added-task {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: #ad7;
+  width: 20%;
+}
+
+.added-task h4 {
+  padding: 1px;
+  margin: 5px;
+}
+
+.added-dependencies {
+  padding: 0;
+  margin: 0;
+}
+
+.added-dependencies p {
+  padding: 0;
+  margin: 0;
+}
+
+#create-taskflow {
+  margin-top: 30px;
+  font-size: 2em;
+  font-weight: bold;
+  border-width: 1px;
+}
 </style>
