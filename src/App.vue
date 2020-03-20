@@ -5,7 +5,7 @@
       <img alt="Taskflow logo" src="/images/Logo.png">
     </div>
     <div id="nav">
-      <router-link to="/">Home</router-link>
+      <router-link to="/">My Taskflows</router-link>
       <router-link to="/create">Create a Taskflow</router-link>
     </div>
     </div>

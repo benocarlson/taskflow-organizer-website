@@ -2,7 +2,7 @@
   <div class="wrapper">
     <h1>{{taskflow.name}}</h1>
     <div class="ready" v-if='ready.length > 0'>
-      <h2>Tasks ready to be completed</h2>
+      <h2>Current tasks</h2>
       <TaskList :tasks="ready" @delete-task="deleteTask" @complete-task="completeTask"/>
     </div>
     <div class="locked" v-if='locked.length > 0'>
