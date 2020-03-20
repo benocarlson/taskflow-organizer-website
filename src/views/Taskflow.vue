@@ -1,14 +1,18 @@
 <template>
   <div class="wrapper">
-    <TaskList class="ready" :tasks="ready" @mark-complete="completeTask"/>
+    <TaskList class="ready" :tasks="ready" @complete-task="completeTask"/>
     <TaskList class="locked" :tasks="locked"/>
     <TaskList class="completed" :tasks="completed"/>
   </div>
 </template>
 
 <script>
+import TaskList from '../components/TaskList.vue'
 export default {
   name: 'Taskflow',
+  components: {
+    TaskList
+  },
   data() {
     return {
       taskflow: {}

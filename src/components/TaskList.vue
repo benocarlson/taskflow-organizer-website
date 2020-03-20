@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="tasks">
       <div :class="'task ' + getTaskType(task)" v-for="task in tasks" :key="task.id">
-        <h1>{{task.name}}</h1>
+        <h2>{{task.name}}</h2>
         <div class="task-controls">
           <button class="complete" :disabled='isNotReady(task)' @click.prevent="$emit('complete-task', task)">Mark as Complete</button>
           <button class="edit">Edit</button>
@@ -30,7 +30,7 @@ export default {
       }
     },
     isNotReady(task) {
-      return (getTaskType(task) !== "ready");
+      return (this.getTaskType(task) !== "ready");
     }
   }
 }
