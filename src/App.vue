@@ -24,7 +24,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #111;
   background: #8c8;
 }
 
@@ -50,7 +50,7 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #222;
   margin-left: 10px;
   margin-right: 50px;
 }

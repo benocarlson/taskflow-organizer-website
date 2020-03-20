@@ -66,7 +66,21 @@ export default {
 .task {
   width: 27%;
   border: 2px solid #000;
-  margin-top: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.completed {
+  background: #272;
+}
+
+.ready {
+  background: #4a9
+}
+
+.locked {
+  background: #ad7;
 }
 
 .todos h4 {
@@ -87,8 +101,25 @@ export default {
 .task-controls button {
   margin: 5px;
   padding: 5px;
-  font-size: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  border-width: 1px;
   width: 100%;
+}
+
+.complete {
+  background: #494;
+  border-color: #494;
+}
+
+.incomplete {
+  background: #aa4;
+  border-color: #aa4;
+}
+
+.delete {
+  background: #a44;
+  border-color: #a44;
 }
 
 </style>

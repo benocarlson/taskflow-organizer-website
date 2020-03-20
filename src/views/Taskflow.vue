@@ -1,17 +1,17 @@
 <template>
   <div class="wrapper">
     <h1>{{taskflow.name}}</h1>
-    <div class="ready" v-if='ready.length > 0'>
+    <div class="task-set ready" v-if='ready.length > 0'>
       <h2>Current tasks</h2>
-      <TaskList :tasks="ready" @delete-task="deleteTask" @complete-task="completeTask"/>
+      <TaskList class='list' :tasks="ready" @delete-task="deleteTask" @complete-task="completeTask"/>
     </div>
-    <div class="locked" v-if='locked.length > 0'>
+    <div class="task-set locked" v-if='locked.length > 0'>
       <h2>Locked tasks</h2>
-      <TaskList :tasks="locked" @delete-task="deleteTask"/>
+      <TaskList class='list' :tasks="locked" @delete-task="deleteTask"/>
     </div>
-    <div class="completed" v-if='completed.length > 0'>
+    <div class="task-set completed" v-if='completed.length > 0'>
       <h2>Completed tasks</h2>
-      <TaskList :tasks="completed" @incomplete-task="removeCompletion" @delete-task="deleteTask"/>
+      <TaskList class='list' :tasks="completed" @incomplete-task="removeCompletion" @delete-task="deleteTask"/>
     </div>
   </div>
 </template>
@@ -74,3 +74,24 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+h1 {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000;
+}
+
+.task-set {
+  margin-top: 50px;
+  margin-bottom: 0px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #000;
+}
+
+.task-set .list {
+  margin-top: 0;
+}
+
+</style>
