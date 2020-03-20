@@ -29,15 +29,18 @@
 
 #header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  padding: 20px;
+  border-bottom: 3px solid #111;
+  background: #CCC;
 }
 
 #logo img {
   width: 200px;
   height: 200px;
   object-fit: scale-down;
-  margin: 50px;
+  margin-left: 50px;
 }
 
 #nav {
@@ -48,9 +51,35 @@
   font-weight: bold;
   color: #2c3e50;
   margin-left: 10px;
+  margin-right: 50px;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  border-top: 3px solid #111;
+  background: #CCC;
+  margin-top: 40px;
+}
+
+#footer a {
+  padding: 30px;
+  border-radius: 10px;
+}
+
+#footer a:link, #footer a:visited {
+  background: #AAA;
+  color: #000;
+  text-decoration: none;
+}
+
+#footer a:hover, #footer a:visited:hover {
+  background: #888;
+  color: #000;
 }
 </style>
